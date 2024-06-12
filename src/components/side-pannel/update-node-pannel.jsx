@@ -1,14 +1,20 @@
 import { Textarea } from "@/components/ui/textarea";
 import useUpdateNode from "@/store/update-node";
+import { useState } from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
 
 export default function UpdateMessagePannel() {
   const selecetdNode = useUpdateNode((state) => state.node);
   const updateNode = useUpdateNode((state) => state.updateNode);
   const resetUpdateNode = useUpdateNode((state) => state.reset);
+  const [showHelperText, setShowHelperText] = useState(false);
 
   function handleChange(e) {
     updateNode(e.target.value);
+  }
+
+  function onBlur() {
+    setShowHelperText(true);
   }
   return (
     <div className="border-b-2">
@@ -29,7 +35,13 @@ export default function UpdateMessagePannel() {
           placeholder="Text"
           value={selecetdNode.data.label}
           onChange={handleChange}
+          onBlur={onBlur}
         />
+        {showHelperText ? (
+          <p className="mt-1 text-xs">
+            Save changes in order to update the node
+          </p>
+        ) : null}
       </div>
     </div>
   );

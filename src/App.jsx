@@ -13,11 +13,11 @@ export default function App() {
           Save Changes
         </Button>
       </nav>
-      <main className="grid grid-cols-12 h-[calc(100%-40px)] ">
-        <section className="col-span-10 ">
+      <main className="grid grid-rows-12 md:grid-rows-none  md:grid-cols-12 h-[calc(100%-40px)] ">
+        <section className="row-span-9 md:row-span-full md:col-span-9 xl:col-span-10 ">
           <ReactFlowPlayground btnRef={saveChangeBtnRef} />
         </section>
-        <aside className="col-span-2 border-l-2">
+        <aside className="row-span-3 md:row-span-full  md:col-span-3 xl:col-span-2  border-t-2 md:border-l-2 ">
           <SidePannel />
         </aside>
       </main>

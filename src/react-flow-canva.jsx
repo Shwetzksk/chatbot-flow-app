@@ -1,27 +1,18 @@
-import React, { useCallback } from "react";
-import ReactFlow, {
-  useNodesState,
-  useEdgesState,
-  addEdge,
-  Background,
-  ReactFlowProvider,
-} from "reactflow";
 import CustomNode from "@/components/node";
 import useUpdateNode from "@/store/update-node";
-import toast, { Toaster } from "react-hot-toast";
+import { useCallback } from "react";
+import toast from "react-hot-toast";
+import ReactFlow, {
+  Background,
+  ReactFlowProvider,
+  addEdge,
+  useEdgesState,
+  useNodesState,
+} from "reactflow";
 
+import { useEffect, useRef, useState } from "react";
 import "reactflow/dist/style.css";
-import { useMemo } from "react";
-import { useRef } from "react";
-import { useState } from "react";
-import { useEffect } from "react";
 
-const initialNodes = [
-  { id: "1", position: { x: 0, y: 0 }, data: { label: "1" }, type: "node" },
-  { id: "2", position: { x: 0, y: 100 }, data: { label: "2" }, type: "node" },
-  { id: "3", position: { x: 0, y: 300 }, data: { label: "3" }, type: "node" },
-];
-const initialEdges = [{ id: "e1-2", source: "1", target: "2" }];
 let id = 0;
 const getId = () => `dndnode_${id++}`;
 const nodeTypes = { node: CustomNode };
@@ -31,9 +22,8 @@ export default function ReactFlowPlayground({ btnRef }) {
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const setSelectedNode = useUpdateNode((state) => state.setSelect);
-  const updateNode = useUpdateNode((state) => state.node);
+  const updateNode = useUpdateNode((state) => state.node); //updated node with label
 
-  console.log(updateNode);
   const onConnect = useCallback(
     (params) =>
       setEdges((eds) => {
@@ -73,8 +63,7 @@ export default function ReactFlowPlayground({ btnRef }) {
     },
     [reactFlowInstance]
   );
-  console.log("Edges", edges);
-  console.log("Nodes", nodes);
+
   useEffect(() => {
     function saveChanges() {
       if (updateNode) {
