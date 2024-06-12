@@ -2,6 +2,7 @@ import SidePannel from "@/components/side-pannel";
 import { Button } from "@/components/ui/button";
 import ReactFlowPlayground from "./react-flow-canva";
 import { useRef } from "react";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
   const saveChangeBtnRef = useRef(null);
@@ -20,6 +21,7 @@ export default function App() {
           <SidePannel />
         </aside>
       </main>
+      <Toaster position="top-center" />
     </section>
   );
 }
