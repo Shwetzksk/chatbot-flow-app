@@ -57,7 +57,7 @@ export default function ReactFlowPlayground({ btnRef }) {
         id: getId(),
         type,
         position,
-        data: { label: `message ${id}` },
+        data: { label: `test message ${id}` },
       };
       setNodes((nds) => nds.concat(newNode));
     },
@@ -81,7 +81,7 @@ export default function ReactFlowPlayground({ btnRef }) {
       } else {
         const isAllNodeConnected = edges.length >= nodes.length - 1;
 
-        if (!isAllNodeConnected) {
+        if (!isAllNodeConnected || !nodes.length) {
           toast.error("Cannot save flow");
         } else {
           toast.success("Saved flow");
@@ -110,9 +110,7 @@ export default function ReactFlowPlayground({ btnRef }) {
           onNodeClick={(_, node) => {
             setSelectedNode(node);
           }}
-        >
-          <Background />
-        </ReactFlow>
+        ></ReactFlow>
       </div>
     </ReactFlowProvider>
   );

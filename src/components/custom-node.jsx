@@ -3,13 +3,11 @@ import { BiMessageRoundedDetail } from "react-icons/bi";
 import { PiWhatsappLogoFill } from "react-icons/pi";
 import { Handle, Position } from "reactflow";
 
-export default function CustomNode({ data, id }) {
-  const isActive = useUpdateNode((state) => state?.oldNode?.id === id);
-
+export default function CustomNode({ data, selected, ...others }) {
   return (
     <div
       className={`shadow-lg border-2 rounded-md bg-white min-w-56 ${
-        isActive ? "border-blue-600 " : "border-transparent"
+        selected ? "border-blue-600 " : "border-transparent"
       }`}
     >
       <div>
