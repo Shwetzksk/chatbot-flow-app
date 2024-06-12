@@ -1,5 +1,6 @@
 import { Textarea } from "@/components/ui/textarea";
 import useUpdateNode from "@/store/update-node";
+import { useEffect } from "react";
 import { useState } from "react";
 import { MdKeyboardBackspace } from "react-icons/md";
 
@@ -16,6 +17,18 @@ export default function UpdateMessagePannel() {
   function onBlur() {
     setShowHelperText(true);
   }
+
+  useEffect(() => {
+    let timer =
+      showHelperText &&
+      setTimeout(() => {
+        setShowHelperText(false);
+      }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [showHelperText]);
   return (
     <div className="border-b-2">
       <div className="flex items-center border-b-2 p-1.5">
