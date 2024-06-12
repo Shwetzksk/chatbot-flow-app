@@ -1,4 +1,4 @@
-import CustomNode from "@/components/node";
+import CustomNode from "@/components/custom-node";
 import useUpdateNode from "@/store/update-node";
 import { useCallback } from "react";
 import toast from "react-hot-toast";
