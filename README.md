@@ -61,3 +61,7 @@ pnpm run dev
 ### Click on button to save flow
 
 ![alt text](image-6.png)
+
+### UI is responsive
+
+![alt text](image-7.png)
